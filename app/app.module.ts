@@ -1,29 +1,37 @@
+import './rxjs-extensions';
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { AppComponent }  from './app.component';
-import { HeroDetailComponent } from './hero-detail.component';
-import { HeroesComponent }     from './heroes.component';
-import { HeroService }         from './hero.service';
-import {DashboardComponent} from './dashboard.component'
-import {routing} from './app.routing'
+import { HttpModule }    from '@angular/http';
+// Imports for loading & configuring the in-memory web api
+import { InMemoryWebApiModule } from 'angular2-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { AppComponent }         from './app.component';
+import { DashboardComponent }   from './dashboard.component';
+import { HeroesComponent }      from './heroes.component';
+import { HeroDetailComponent }  from './hero-detail.component';
+import { HeroService }          from './hero.service';
+import { HeroSearchComponent }  from './hero-search.component';
+import { routing }              from './app.routing';
 @NgModule({
     imports: [
         BrowserModule,
         FormsModule,
+        HttpModule,
+        InMemoryWebApiModule.forRoot(InMemoryDataService),
         routing
     ],
-    //这个数组包含了所有属于本应用模块的，由我们亲自创建的组件、管道和指令
     declarations: [
         AppComponent,
+        DashboardComponent,
         HeroDetailComponent,
         HeroesComponent,
-        DashboardComponent
+        HeroSearchComponent
     ],
     providers: [
-        //这个HeroService 的单例对象，它对应用中的 所有 组件都有效
-        HeroService
+        HeroService,
     ],
     bootstrap: [ AppComponent ]
 })
-export class AppModule { }
+export class AppModule {
+}
