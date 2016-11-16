@@ -5,4 +5,4 @@ import '../../style/index.css';
     templateUrl: './temp.html',
     styleUrls: ['./style.css']
 })
-export class AppComponent { }
+export class AppComponent {}
